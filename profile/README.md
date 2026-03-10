@@ -185,12 +185,7 @@ adb shell am start \
 ```
 The application will automatically collect the device fingerprint at startup. At the end check your server to see the collected fingerprint.
 
-## Artifact Evaluation (Required for Functional and Reproduced badges)
-
-This section should include all the steps required to evaluate your artifact's
-functionality and validate your paper's key results and claims. Therefore,
-highlight your paper's main results and claims in the first subsection. And
-describe the experiments that support your claims in the subsection after that.
+## Artifact Evaluation 
 
 ### Main Results and Claims
 
@@ -292,7 +287,7 @@ These fingerprints reproduce the expected data format while preserving user priv
 - **Expected Result**
 After execution, the pipeline produces structured fingerprint datasets that illustrate how raw EXADPrinter fingerprints are parsed and cleaned before analysis.
 
-## Limitations (Required for Functional and Reproduced badges)
+## Limitations
 
 The artifact does not include **the original datasets** collected from **real participants** during the study. 
 These datasets contain device fingerprints collected from participants **who provided their consent** and may include potentially sensitive information. 
@@ -311,13 +306,3 @@ These dummy datasets allow reviewers to execute the data cleaning and parsing pi
 Reviewers can also run their own data collection experiments using the provided framework (e.g., on their own Android devices or through platforms such as BrowserStack). This allows them to validate the functionality of the artifact and confirm that the framework successfully collects device fingerprints as described in the paper.
 
 For these reasons, we believe the artifact enables a meaningful evaluation for the Functional badge.
-
-## Notes on Reusability (Encouraged for all badges)
-
-First, this section might not apply to your artifacts. Describe how your
-artifact can be used beyond your research paper, e.g., as a general framework.
-The overall goal of artifact evaluation is not only to reproduce and verify your
-research but also to help other researchers to re-use and extend your artifacts.
-Discuss how your artifacts can be adapted to other settings, e.g., more input
-dimensions, other datasets, and other behavior, through replacing individual
-modules and functionality or running more iterations of a specific module.
