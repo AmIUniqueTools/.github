@@ -18,19 +18,19 @@ Requested Badge(s):
    - [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample), contains scripts and notebooks used for the data processing pipeline, including examples of data collection, parsing and cleaning fingerprints. 
 To facilitate using [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample) while preserving privacy, we provide a small dummy dataset and an example collection workflow using real Android devices from the [BrowserStack](https://www.browserstack.com/) platform.
 
-### Security/Privacy Issues and Ethical Concerns (Required for all badges)
+### Security/Privacy Issues and Ethical Concerns 
+This artifact contains an Android application used to collect and device fingerprint attributes. 
+The application extracts attributes **without requesting Android permissions** and **does not intentionally** access personal user data such as contacts, messages, or account information.
 
-Replace this with a description of security or privacy risks that your artifact
-may hold for the machine of the person trying to evaluate or reuse your
-artifact. This is especially relevant for artifacts that _disable a security
-mechanism_, such as a firewall, ASLR, etc., to demonstrate an attack, as well as
-to artifacts that _run vulnerable code_, such as exploits, malware samples,
-etc., to demonstrate a vulnerability.
+Device fingerprint data may contain attributes that could contribute to device identification. 
+For privacy and ethical reasons, the **dataset collected during the study is not included in this artifact**. 
+Instead, we provide synthetic example fingerprints.
 
-User study artifacts that include anonymized transcripts or survey responses
-should list the ethical review / IRB process followed to obtain participants'
-consent to publishing this anonymized dataset. They may also list how
-participants were compensated.
+The original data collection study involving real participants was conducted following institutional ethical guidelines and was **approved by the Institutional Review Board (IRB)** of [INRIA](https://www.inria.fr/), France. 
+Participants provided consent prior to participation.
+
+The artifact does not require disabling operating system security protections and does not execute exploit code, malware, or vulnerable binaries. 
+The provided scripts only automate the execution of the example Android application and the processing of example datasets. Users may review the scripts and run them on test devices or emulators if desired.
 
 ## Basic Requirements
 
