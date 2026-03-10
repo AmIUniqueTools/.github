@@ -13,9 +13,9 @@ Requested Badge(s):
 1. *Paper Title*: **EXADPrinter: Semi-Exhaustive Permissionless Device Fingerprinting Within the Android Ecosystem**
 2. *Authors*: **Sihem Bouhenniche** (Univ. Lille, CNRS, Inria), **Pierre Laperdrix** (Univ. Lille, CNRS, Inria), **Walter Rudametkin** (Univ. Rennes, CNRS, Inria, IRISA, IUF).
 3. *Year & Issue*: PETs Issue 3 - 2026
-4. *Description*: This GitHub organization contains main artifacts supporting the paper. It includes two repositories. 
-   - The first repository, [`AmIUniqueApp](https://github.com/AmIUniqueTools/AmIUniqueApp), provides the source code of the **EXADPrinter** Android fingerprinting library together with the Android application used to collect fingerprints from real devices. 
-   - The second repository, [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample), contains scripts and notebooks used for the data processing pipeline, including examples of data collection, parsing and cleaning fingerprints. 
+4. *Description*: This GitHub organization contains main artifacts supporting the paper. It includes two repositories:  
+   - [AmIUniqueApp](https://github.com/AmIUniqueTools/AmIUniqueApp), provides the source code of the **EXADPrinter** Android fingerprinting library together with the Android application used to collect fingerprints from real devices. 
+   - [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample), contains scripts and notebooks used for the data processing pipeline, including examples of data collection, parsing and cleaning fingerprints. 
 To facilitate using [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample) while preserving privacy, we provide a small dummy dataset and an example collection workflow using real Android devices from the [BrowserStack](https://www.browserstack.com/) platform.
 
 ### Security/Privacy Issues and Ethical Concerns (Required for all badges)
