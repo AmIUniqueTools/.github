@@ -19,18 +19,16 @@ Requested Badge(s):
 To facilitate using [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample) while preserving privacy, we provide a small dummy dataset and an example collection workflow using real Android devices from the [BrowserStack](https://www.browserstack.com/) platform.
 
 ### Security/Privacy Issues and Ethical Concerns 
-This artifact contains an Android application used to collect and device fingerprint attributes. 
-The application extracts attributes **without requesting Android permissions** and **does not intentionally** access personal user data such as contacts, messages, or account information.
 
-Device fingerprint data may contain attributes that could contribute to device identification. 
-For privacy and ethical reasons, the **dataset collected during the study is not included in this artifact**. 
-Instead, we provide synthetic example fingerprints.
+This artifact contains an Android application used to collect device fingerprint attributes.
 
-The original data collection study involving real participants was conducted following institutional ethical guidelines and was **approved by the Institutional Review Board (IRB)** of [INRIA](https://www.inria.fr/), France. 
-Participants provided consent prior to participation.
+The application extracts attributes **without requesting Android permissions** and **does not intentionally access personal user data**, such as emails or phone numbers. However, device fingerprint data may still contain attributes that could potentially reveal identifying information. Consequently, **we followed a responsible disclosure process and notified the relevant parties of the identified issues**, as described in the paper.
 
-The artifact does not require disabling operating system security protections and does not execute exploit code, malware, or vulnerable binaries. 
-The provided scripts only automate the execution of the example Android application and the processing of example datasets. Users may review the scripts and run them on test devices or emulators if desired.
+For privacy and ethical reasons, the **dataset collected during the study is not included in this artifact** and is **securely stored in our institutional database**. Instead, we provide **synthetic example fingerprints** that illustrate the structure of the collected data.
+
+The original data collection study involving real participants was conducted in accordance with institutional ethical guidelines and was **approved by the Institutional Review Board (IRB) of [INRIA](https://www.inria.fr/), France**. Participants provided informed consent prior to participation.
+
+The artifact does not require disabling operating system security protections and does not execute exploit code, malware, or vulnerable binaries. The provided scripts simply automate the execution of the example Android application and the processing of example datasets. Users may review the scripts and run them on test devices or emulators if desired.
 
 ## Basic Requirements
 
@@ -43,7 +41,7 @@ Minimal hardware requirements:
 Recommended configuration for faster execution:
 - CPU: ≥4 cores
 - RAM: ≥8 GB
-- Storage: ≥10 GB free disk space
+- Storage: ≥50 GB free disk space
 
 ***Optional:** To test the data collection process, reviewers may use a **physical Android device with Developer Options and USB debugging enabled**. Alternatively, the artifact can be executed on an **Android emulator (e.g., the Android Studio emulator)**.*
 
@@ -75,35 +73,31 @@ The Python scripts used for data cleaning and analysis require:
 - pip 26.0.1
 Required Python packages are listed in:
 - [`requirements.txt`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/requirements.txt)
-
+ 
 #### Datasets
 - [`DUMMY_DATA`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DUMMY_DATA): **dummy fingerprint datasets** demonstrating the expected format collected from real Android testing devices.
 
 ***The collected dataset from participants used in the paper cannot be shared due to privacy considerations.***
 
 #### Automation tools (optional)
-Data collection on real Android devices can optionally be automated using external platforms such as [BrowserStack](https://www.browserstack.com/).
-Example scripts are provided in [`DataCollectionSetup`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DataCollectionSetup); however, running them requires a BrowserStack account.
+- Data collection on real Android devices can optionally be automated using external platforms such as [BrowserStack](https://www.browserstack.com/).
+- Example scripts are provided in [`DataCollectionSetup`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DataCollectionSetup); however, running them requires a BrowserStack account (a free trial provides **100 minutes of Automate testing**).
+- To run data automation script, you need to install [`jq`](https://jqlang.org/download/).
 
 #### Android artifacts
 The EXADPrinter library is available through multiple distribution methods:
-- As a Maven dependency published on Maven Central.
+- As a Maven dependency published on Maven Central, check the link [https://central.sonatype.com/artifact/io.github.amiuniquetools/exadprinterlib](https://central.sonatype.com/artifact/io.github.amiuniquetools/exadprinterlib).
 - As a downloadable `.aar` file from the [AmIUniqueApp GitHub release page](https://github.com/AmIUniqueTools/AmIUniqueApp/releases/).
 
 Two APKs implementing the library are also provided:
 - [AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/main/public/app-debug.apk) – the full application used in the experiments.
 - [exadprinterDemoApp.apk](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk) – a minimal demonstration application that integrates the library and runs the fingerprint collection process at application launch.
 
-### Estimated Time and Storage Consumption (Required for Functional and Reproduced badges)
+### Estimated Time and Storage Consumption
 
-Replace the following with estimated values for:
-
-- The overall human and compute times required to run the artifact.
-- The overall disk space consumed by the artifact.
-
-This helps reviewers schedule the evaluation in their time plan and others in
-general to see if everything is running as intended. This should also be
-specified at a finer granularity for each experiment (see below).
+* **Experiments 1 and 3 only** (Single application execution and data processing on the provided example dataset): **< 1 hour** on a standard machine.
+* **Including automated data collection (BrowserStack devices)**: up to **~3 hours**, depending on the number of devices defined in [`capabilities.json`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/capabilities.json).
+* **Disk space** required for the artifact (repository, example datasets, and outputs): **< 5GB**.
 
 ## Environment
 
@@ -123,7 +117,9 @@ The artifact is publicly available through the following persistent Github repos
 
 ### Set up the environment
 
-1. Clone the artifact repository:
+#### [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/): EXADPrinter pipeline repository
+
+1. Clone the repository:
 
 ```
 git clone https://github.com/AmIUniqueTools/EXADPrinterPipelineExample.git
@@ -134,7 +130,7 @@ The repository is organized as follows:
 - [DUMMY_DATA/](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DUMMY_DATA) # Example fingerprint dataset
 - [DUMMY_DATA_PREPARED/](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DUMMY_DATA_PREPARED) # Cleaned Example fingerprint dataset
 - [DUMMY_DATA_STRUCTURE/](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DUMMY_DATA_STRUCTURE) # Cleaned Example fingerprint structure dataset
-- [fingerprint_parser/](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/fingerprint_parser)                # Module for parsing fingerprint attributes.
+- [fingerprint_parser/](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/fingerprint_parser) # Module for parsing fingerprint attributes.
 - [data_cleanning_pipeline.ipynb](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/data_preparation_pipeline.ipynb) # A Jupyter notebook implementing the attribute cleaning logic
 - [DataCollectionSetup](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/) # A minimal setup to run data collection.
 
@@ -146,44 +142,43 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. (Optional) - Run Data Collection
-Instead of using the provided dummy dataset (DUMMY_DATA/), reviewers may optionally run a small data collection experiment using the provided automation script.
+3. (Optional) - Create Browserstack account to run Automated Data Collection 
+*This step is optional and not required to evaluate the artifact. The repository already contains dummy datasets that allow testing the full processing pipeline.*
 
-   - Edit the configuration variables in [`pipeline.sh`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/pipeline.sh)
-   - Replace the following variables with your own values:
-      - API_END_POINT= – URL of the server that will receive the collected fingerprints. The configured endpoint should have a similar schema as in [`FingerprintApi.kt`](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/main/app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt)
-      - APP_URL= – Upload the [`exadprinterDemoApp.apk`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk) APK manually to browserstack and place the download link here.
-      - BROWSERSTACK_USERNAME= – Your BrowserStack username.
-      - BROWSERSTACK_ACCESS_KEY= – Your BrowserStack access key.
-   - Run the collection pipeline:
+Instead of using the dummy dataset, reviewers can run a **small fingerprint collection experiment** using the provided automation pipeline.
 
-   ```
-   ./pipeline.sh
-   ```
+This example uses **BrowserStack real Android devices**. Official documentation for the BrowserStack App Automate service can be found [here](https://www.browserstack.com/docs/app-automate/appium/getting-started/python/pytest?fw-lang=python%2Fpytest).
 
-The script will:
-- deploy the demo application to BrowserStack devices,
-- launch the fingerprint collection process,
-- and send the collected fingerprints to the configured API endpoint.
+To run the automated collection:
 
-If the script completes successfully, the collected fingerprints should appear at the configured API server and can then be processed using the analysis scripts provided in the artifact.
+- Create BrowserStack account at [https://www.browserstack.com/](https://www.browserstack.com/) (a free trial provides **100 minutes of Automate testing**).
+- Retrieve your BrowserStack credentials from your account dashboard: [https://www.browserstack.com/accounts/settings](https://www.browserstack.com/accounts/settings)
+- These credentials correspond to the following variables:
+```
+BROWSERSTACK_USERNAME
+BROWSERSTACK_ACCESS_KEY
+```
+
+For more information, check the documentation: [https://www.browserstack.com/docs/app-automate/appium/getting-started/python/pytest#configure-browserstack-credentials](https://www.browserstack.com/docs/app-automate/appium/getting-started/python/pytest#configure-browserstack-credentials)
 
 ### Testing the Environment
 
-To verify that the environment is correctly configured, run the following tests.
+To verify that the environment is correctly configured, run *Python Environment Test*
 
-1. *Python Environment Test*
+- This test processes one fingerprint from the [DUMMY_DATA/](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DUMMY_DATA) directory and runs the cleaning pipeline.
 
-2. *Android Environment Test*
-Install the demo application on an Android device (with USB debugging activated), and run it by given your configured endpoint
-
+```bash
+python env_test.py
 ```
-adb install exadprinterDemoApp.apk
-adb shell am start \
-  -n "com.amiunique.exadprinterimplementationexample/.MainActivity"\
-  --es API_END_POINT "YOUR_ENDPOINT_URL"
+
+- Expected output:
+
+```text
+This fingerprint contains 293269 SDK APIs
+Processed '1afe3e42-8731-4c44-9e09-ebd276ed0e62_1773071323547.zip'
+Original data size: 322806 attributes
+Cleaned data size: 765105 attributes
 ```
-The application will automatically collect the device fingerprint at startup. At the end check your server to see the collected fingerprint.
 
 ## Artifact Evaluation 
 
@@ -199,34 +194,44 @@ The execution of the collection process on a single device produces a large fing
 ### Experiments
 
 #### Experiment 1: Running data collection on a single device
-- **Time**: ~5 minutes
+- **Time**: ~10 minutes (max)
 - **Storage**: ~20 MB per collected fingerprint
 
 This experiment demonstrates how to run the EXADPrinter fingerprint collection process on a single Android device (either a physical device or an emulator).
 - **Steps**
-   1. Download the application
+   1. Download the application ([AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/main/public/app-debug.apk) or [exadprinterDemoApp.apk](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk))
    2. Install the application on the device:
    ```
-   adb install -r com.amiunique.amiuniqueapp
+   adb install app-debug.apk # or exadprinterDemoApp.apk
    ```
    3. Launch the application while providing your API_BASE_URL:
    ```
    adb shell am start \
-   -n "com.amiunique.amiuniqueapp/.presentation.MainActivity"\
+   -n "com.amiunique.amiuniqueapp/.presentation.MainActivity"\ # or  -n "com.amiunique.exadprinterimplementationexample/.MainActivity"\
    --es API_END_POINT "API_BASE_URL"
    ```
 
-> The API request is defined in [`FingerprintApi.kt`](./app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt). By default, the application sends fingerprints to: `<FALLBACK_URL>/saveFP/`. To receive fingerprints, your backend must implement the same API schema.
+> The API request is defined in [`FingerprintApi.kt`](./app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt).
+> By default, both applications send fingerprints to:
+> - `<OUR_SERVER_URL>/saveFP/` for the **`com.amiunique.amiuniqueapp`** application
+> - `<OUR_SERVER_URL>/saveStructure/` for the **`com.amiunique.exadprinterimplementationexample`** application
+> To receive fingerprints, your backend end points must implement the same API schema and expect a **POST request** containing
+> * a **fingerprint file** (sent as `file`)
+> * a **device identifier** (sent as `uuid`)
+
 
 - **Expected Result**
 When the application starts, it automatically collects device attributes using the EXADPrinter library.
 After execution, a fingerprint containing a large set of device attributes will be sent to the configured API endpoint.
 
 #### Experiment 2: Running data collection using automation (optional)
+The required resources depend on the number of devices defined in [`capabilities.json`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/capabilities.json).
+The file currently contains **10 device configurations**. Additional devices can be added by following the BrowserStack capabilities documentation:
+[https://www.browserstack.com/docs/app-automate/capabilities](https://www.browserstack.com/docs/app-automate/capabilities)
 
-- **Time**: depends on the number of selected devices
-Example: ~1 hour for 10 devices
-- **Storage**: ~20 MB per fingerprint
+*Example (10 devices):*
+* **Time:** ~10 minutes × 10 devices ≈ **100 minutes**
+* **Storage:** ~20 MB × 10 runs ≈ **200 MB**
 
 This experiment demonstrates how to automate fingerprint collection across multiple real Android devices using the BrowserStack App Automate platform.
 
