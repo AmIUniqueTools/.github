@@ -226,32 +226,36 @@ This experiment demonstrates how to run the EXADPrinter fingerprint collection p
   ```
   
   You should see your device listed.
-  3. Download one of the following APKs:
-    * [AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/master/public/app-debug.apk)
-    * [EXADPrinter Demo App](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk)
+  3. Download the [EXADPrinter Demo App](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk) apk file.
   
   4. Install the application on the device:
   ```
-  adb install app-debug.apk # or exadprinterDemoApp.apk
+  adb install exadprinterDemoApp.apk
   ```
-  5. Launch the application while providing your API_BASE_URL:
+  5. Launch the application (you can provide your API_BASE_URL):
   ```
   adb shell am start \
-  -n "com.amiunique.amiuniqueapp/.presentation.MainActivity"\ # or  -n "com.amiunique.exadprinterimplementationexample/.MainActivity"\
-  --es API_END_POINT "API_BASE_URL"
+  -n "com.amiunique.exadprinterimplementationexample/.MainActivity"\
+  --es API_END_POINT "API_BASE_URL"   # Optional 
   ```
   
-  > The API request is defined in [`FingerprintApi.kt`](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/master/app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt).
-  > By default, both applications send fingerprints to:
-  > - `<OUR_SERVER_URL>/saveFP/` for the **`com.amiunique.amiuniqueapp`** application
-  > - `<OUR_SERVER_URL>/saveStructure/` for the **`com.amiunique.exadprinterimplementationexample`** application
-  > To receive fingerprints, your backend end points must implement the same API schema and expect a **POST request** containing
+  > By default, demo application sends fingerprints to:`<OUR_SERVER_URL>/saveStructure/`.
+  > To receive fingerprints, your must implement `saveStructure/` API endpoint and expect a **POST request** containing
   > * a **fingerprint file** (sent as `file`)
   > * a **device identifier** (sent as `uuid`)
+  > The endpoint response should follow the schema below:
+  ```json
+  UploadResponse {
+    message: String
+    downloadUrl: String
+    fileName: String
+  }
+  ```
 
 - **Expected Result**
 When the application starts, it automatically collects device attributes using the EXADPrinter library.
-After execution, a fingerprint containing a large set of device attributes will be sent to the configured API endpoint.
+After execution, a fingerprint containing a large set of device attributes is sent to the configured API endpoint.
+You can download the fingerprint by accessing the provided URL.
 
 #### Experiment 2: Running data collection using automation (optional)
 The required resources depend on the number of devices defined in [`capabilities.json`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/capabilities.json).
@@ -289,6 +293,19 @@ This experiment demonstrates how to automate fingerprint collection across multi
    3. send collected fingerprints to the configured API endpoint.
 
 The list of devices used during the experiment is defined in [`capabilities.json`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/capabilities.json)
+
+It's important to note that by default, demo application sends fingerprints to:`<OUR_SERVER_URL>/saveStructure/`.
+To receive fingerprints, your must implement `saveStructure/` API endpoint and expect a **POST request** containing
+* a **fingerprint file** (sent as `file`)
+* a **device identifier** (sent as `uuid`)
+The endpoint response should follow the schema below:
+```json
+  UploadResponse {
+    message: String
+    downloadUrl: String
+    fileName: String
+  }
+```
 
 - **Expected Result**
 After execution, fingerprints from multiple Android devices will be sent to the configured API endpoint.
