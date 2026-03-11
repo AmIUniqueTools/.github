@@ -99,7 +99,7 @@ The EXADPrinter library is available through multiple distribution methods:
 - As a downloadable `.aar` file from the [AmIUniqueApp GitHub release page](https://github.com/AmIUniqueTools/AmIUniqueApp/releases/).
 
 Two APKs implementing the library are also provided:
-- [AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/main/public/app-debug.apk) – the full application used in the experiments.
+- [AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/master/public/app-debug.apk) – the full application used in the experiments.
 - [exadprinterDemoApp.apk](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk) – a minimal demonstration application that integrates the library and runs the fingerprint collection process at application launch.
 
 ### Estimated Time and Storage Consumption
