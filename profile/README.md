@@ -114,8 +114,8 @@ Two APKs implementing the library are also provided:
 
 The artifact is publicly available through the following persistent Github repositories:
 
-- [EXADPrinter Android library](https://github.com/AmIUniqueTools/AmIUniqueApp/tree/main/EXADPrinterLib)
-- [AmIUnique Android application using the library](https://github.com/AmIUniqueTools/AmIUniqueApp/tree/main/app)
+- [EXADPrinter Android library](https://github.com/AmIUniqueTools/AmIUniqueApp/tree/master/EXADPrinterLib)
+- [AmIUnique Android application using the library](https://github.com/AmIUniqueTools/AmIUniqueApp/tree/master/app)
 - [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/): Artifact repository containing: 
    - data cleaning pipeline scripts and notebook.
    - [DUMMY_DATA](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/tree/master/DUMMY_DATA): Dummy dataset.
@@ -227,7 +227,7 @@ This experiment demonstrates how to run the EXADPrinter fingerprint collection p
   
   You should see your device listed.
   3. Download one of the following APKs:
-    * [AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/main/public/app-debug.apk)
+    * [AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/master/public/app-debug.apk)
     * [EXADPrinter Demo App](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk)
   
   4. Install the application on the device:
@@ -241,7 +241,7 @@ This experiment demonstrates how to run the EXADPrinter fingerprint collection p
   --es API_END_POINT "API_BASE_URL"
   ```
   
-  > The API request is defined in [`FingerprintApi.kt`](./app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt).
+  > The API request is defined in [`FingerprintApi.kt`](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/master/app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt).
   > By default, both applications send fingerprints to:
   > - `<OUR_SERVER_URL>/saveFP/` for the **`com.amiunique.amiuniqueapp`** application
   > - `<OUR_SERVER_URL>/saveStructure/` for the **`com.amiunique.exadprinterimplementationexample`** application
