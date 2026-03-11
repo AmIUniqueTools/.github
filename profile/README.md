@@ -15,8 +15,9 @@ Requested Badge(s):
 3. *Year & Issue*: PETs Issue 3 - 2026
 4. *Description*: This GitHub organization contains main artifacts supporting the paper. It includes two repositories:  
    - [AmIUniqueApp](https://github.com/AmIUniqueTools/AmIUniqueApp), provides the source code of the **EXADPrinter** Android fingerprinting library together with the Android application used to collect fingerprints from real devices. 
-   - [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample), contains scripts and notebooks used for the data processing pipeline, including examples of data collection, parsing and cleaning fingerprints. 
-To facilitate using [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample) while preserving privacy, we provide a small dummy dataset and an example collection workflow using real Android devices from the [BrowserStack](https://www.browserstack.com/) platform.
+   - [EXADPrinterPipelineExample](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample) contains the scripts and notebooks used in the data processing pipeline, including examples of fingerprint collection, parsing, and cleaning. To facilitate its use while preserving privacy, we provide a **small dummy dataset collected on real Android devices available through the [BrowserStack](https://www.browserstack.com/) testing platform**, together with an **example workflow demonstrating how to perform fingerprint collection on real devices through this platform**.
+
+
 
 ### Security/Privacy Issues and Ethical Concerns 
 
@@ -24,7 +25,7 @@ This artifact contains an Android application used to collect device fingerprint
 
 The application extracts attributes **without requesting Android permissions** and **does not intentionally access personal user data**, such as emails or phone numbers. However, device fingerprint data may still contain attributes that could potentially reveal identifying information. Consequently, **we followed a responsible disclosure process and notified the relevant parties of the identified issues**, as described in the paper.
 
-For privacy and ethical reasons, the **dataset collected during the study is not included in this artifact** and is **securely stored in our institutional database**. Instead, we provide **synthetic example fingerprints** that illustrate the structure of the collected data.
+For privacy and ethical reasons, the **dataset collected during the study is not included in this artifact** and is **securely stored in our institutional database**. Instead, we provide **dummy dataset collected on real Android devices available through the Browserstack platform** that illustrate the structure of the collected data.
 
 The original data collection study involving real participants was conducted in accordance with institutional ethical guidelines and was **approved by the Institutional Review Board (IRB) of [INRIA](https://www.inria.fr/), France**. Participants provided informed consent prior to participation.
 
@@ -36,15 +37,13 @@ The artifact does not require disabling operating system security protections an
 
 Minimal hardware requirements:
 - Can run on a standard laptop or workstation.
+- To test the application, reviewers may use a **physical Android device with Developer Options and USB debugging enabled**. Alternatively, the application can be executed on an **Android emulator (e.g., the Android Studio emulator).**
 - No special hardware is required.
 
 Recommended configuration for faster execution:
 - CPU: ≥4 cores
 - RAM: ≥8 GB
 - Storage: ≥50 GB free disk space
-
-***Optional:** To test the data collection process, reviewers may use a **physical Android device with Developer Options and USB debugging enabled**. Alternatively, the artifact can be executed on an **Android emulator (e.g., the Android Studio emulator)**.*
-
 
 ### Software Requirements
 
@@ -194,31 +193,51 @@ The execution of the collection process on a single device produces a large fing
 ### Experiments
 
 #### Experiment 1: Running data collection on a single device
+
 - **Time**: ~10 minutes (max)
 - **Storage**: ~20 MB per collected fingerprint
 
 This experiment demonstrates how to run the EXADPrinter fingerprint collection process on a single Android device (either a physical device or an emulator).
+
 - **Steps**
-   1. Download the application ([AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/main/public/app-debug.apk) or [exadprinterDemoApp.apk](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk))
-   2. Install the application on the device:
-   ```
-   adb install app-debug.apk # or exadprinterDemoApp.apk
-   ```
-   3. Launch the application while providing your API_BASE_URL:
-   ```
-   adb shell am start \
-   -n "com.amiunique.amiuniqueapp/.presentation.MainActivity"\ # or  -n "com.amiunique.exadprinterimplementationexample/.MainActivity"\
-   --es API_END_POINT "API_BASE_URL"
-   ```
-
-> The API request is defined in [`FingerprintApi.kt`](./app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt).
-> By default, both applications send fingerprints to:
-> - `<OUR_SERVER_URL>/saveFP/` for the **`com.amiunique.amiuniqueapp`** application
-> - `<OUR_SERVER_URL>/saveStructure/` for the **`com.amiunique.exadprinterimplementationexample`** application
-> To receive fingerprints, your backend end points must implement the same API schema and expect a **POST request** containing
-> * a **fingerprint file** (sent as `file`)
-> * a **device identifier** (sent as `uuid`)
-
+  1. Connect an Android device
+     * If using a **physical device**:
+       * Enable [Developer Options](https://developer.android.com/studio/debug/dev-options)
+       * Enable **USB debugging**
+       * Connect the device via USB and ensure that **ADB is installed**
+     * If using an **Android emulator**:
+       * Launch an emulator (for example using the Android Studio emulator or via the command line:
+         [https://developer.android.com/studio/run/emulator-commandline](https://developer.android.com/studio/run/emulator-commandline))
+  
+  2. Verify that the device is detected by ADB
+  
+  ```bash
+  adb devices
+  ```
+  
+  You should see your device listed.
+  3. Download one of the following APKs:
+    * [AmIUnique Debug APK](https://github.com/AmIUniqueTools/AmIUniqueApp/blob/main/public/app-debug.apk)
+    * [EXADPrinter Demo App](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/exadprinterDemoApp.apk)
+  
+  4. Install the application on the device:
+  ```
+  adb install app-debug.apk # or exadprinterDemoApp.apk
+  ```
+  5. Launch the application while providing your API_BASE_URL:
+  ```
+  adb shell am start \
+  -n "com.amiunique.amiuniqueapp/.presentation.MainActivity"\ # or  -n "com.amiunique.exadprinterimplementationexample/.MainActivity"\
+  --es API_END_POINT "API_BASE_URL"
+  ```
+  
+  > The API request is defined in [`FingerprintApi.kt`](./app/src/main/java/com/amiunique/amiuniqueapp/network/FingerprintApi.kt).
+  > By default, both applications send fingerprints to:
+  > - `<OUR_SERVER_URL>/saveFP/` for the **`com.amiunique.amiuniqueapp`** application
+  > - `<OUR_SERVER_URL>/saveStructure/` for the **`com.amiunique.exadprinterimplementationexample`** application
+  > To receive fingerprints, your backend end points must implement the same API schema and expect a **POST request** containing
+  > * a **fingerprint file** (sent as `file`)
+  > * a **device identifier** (sent as `uuid`)
 
 - **Expected Result**
 When the application starts, it automatically collects device attributes using the EXADPrinter library.
