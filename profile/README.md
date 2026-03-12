@@ -243,6 +243,7 @@ This experiment demonstrates how to run the EXADPrinter fingerprint collection p
   > To receive fingerprints, your must implement `saveStructure/` API endpoint and expect a **POST request** containing
   > * a **fingerprint file** (sent as `file`)
   > * a **device identifier** (sent as `uuid`)
+  > 
   > The endpoint response should follow the schema below:
   ```json
   UploadResponse {
