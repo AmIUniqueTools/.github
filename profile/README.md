@@ -260,12 +260,12 @@ You can download the fingerprint by accessing the provided URL.
 
 #### Experiment 2: Running data collection using automation (optional)
 The required resources depend on the number of devices defined in [`capabilities.json`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/capabilities.json).
-The file currently contains **10 device configurations**. Additional devices can be added by following the BrowserStack capabilities documentation:
+The file currently contains **3 device configurations**. Additional devices can be added by following the BrowserStack capabilities documentation:
 [https://www.browserstack.com/docs/app-automate/capabilities](https://www.browserstack.com/docs/app-automate/capabilities)
 
 *Example (10 devices):*
-* **Time:** ~10 minutes × 10 devices ≈ **100 minutes**
-* **Storage:** ~20 MB × 10 runs ≈ **200 MB**
+* **Time:** ~10 minutes × 3 devices ≈ **30 minutes**
+* **Storage:** ~20 MB × 3 runs ≈ **60 MB**
 
 This experiment demonstrates how to automate fingerprint collection across multiple real Android devices using the BrowserStack App Automate platform.
 
@@ -287,13 +287,21 @@ This experiment demonstrates how to automate fingerprint collection across multi
    BROWSERSTACK_USERNAME=
    BROWSERSTACK_ACCESS_KEY=
    ```
+    If you don't define your `API_BASE_URL`, you should delete this line:
+   ```
+   appium:optionalIntentArguments: '--es API_END_POINT "$API_BASE_URL"'
+   ```
+   This ensures that the application falls back to the default server configuration
+
+   5. Run the pipeline
+   ```bash
+   ./pipeline.sh
+   ```
 - The script will:
    1. create a BrowserStack session for each configured device,
    2. install the EXADPrinter demo application,
    3. execute fingerprint collection twice for each device,
    3. send collected fingerprints to the configured API endpoint.
-
-The list of devices used during the experiment is defined in [`capabilities.json`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/capabilities.json)
 
 It's important to note that by default, demo application sends fingerprints to:`<OUR_SERVER_URL>/saveStructure/`.
 To receive fingerprints, your must implement `saveStructure/` API endpoint and expect a **POST request** containing
