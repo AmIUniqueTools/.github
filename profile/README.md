@@ -258,6 +258,9 @@ When the application starts, it automatically collects device attributes using t
 After execution, a fingerprint containing a large set of device attributes is sent to the configured API endpoint.
 You can download the fingerprint by accessing the provided URL.
 
+- **Note:**
+Fingerprint extraction is performed locally on the device. If the upload fails (e.g., due to temporary server unavailability or SSL issues), no download URL will be displayed. Please re-run the experiment once the server is available.
+
 #### Experiment 2: Running data collection using automation (optional)
 The required resources depend on the number of devices defined in [`capabilities.json`](https://github.com/AmIUniqueTools/EXADPrinterPipelineExample/blob/master/DataCollectionSetup/capabilities.json).
 The file currently contains **3 device configurations**. Additional devices can be added by following the BrowserStack capabilities documentation:
