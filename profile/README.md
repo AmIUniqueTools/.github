@@ -263,7 +263,7 @@ The required resources depend on the number of devices defined in [`capabilities
 The file currently contains **3 device configurations**. Additional devices can be added by following the BrowserStack capabilities documentation:
 [https://www.browserstack.com/docs/app-automate/capabilities](https://www.browserstack.com/docs/app-automate/capabilities)
 
-*Example (10 devices):*
+*Example (3 devices):*
 * **Time:** ~10 minutes × 3 devices ≈ **30 minutes**
 * **Storage:** ~20 MB × 3 runs ≈ **60 MB**
 
